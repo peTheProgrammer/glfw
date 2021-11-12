@@ -3,19 +3,15 @@ project "glfw"
 	kind "StaticLib"
 	language "C"
 
-	links
-	{
-		"pthread",
-		"X11"
-	}
-
 	files {
 		"src/window.c",
 		"src/vulkan.c",
 		"src/context.c",
 		"src/init.c",
 		"src/input.c",
-		"src/monitor.c"
+		"src/monitor.c",
+		"src/platform.c",
+		"src/null*"
 	}
 
 	filter "system:linux"
@@ -33,5 +29,16 @@ project "glfw"
 			"src/x11_window.c",
 			"src/xkb_unicode.c"
 		}
+		links {
+			"pthread",
+			"X11"
+		}
+
 	filter "system:windows"
 		defines { "_GLFW_WIN32" }
+		files {
+			"src/win32*",
+			"src/wgl_context.c",
+			"src/egl_context.c",
+			"src/osmesa_context.c"
+		}
