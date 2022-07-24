@@ -43,6 +43,12 @@ to whatever window is behind it.  This can also be changed after window
 creation with the matching [window attribute](@ref GLFW_MOUSE_PASSTHROUGH_attrib).
 
 
+@subsubsection wayland_app_id_34 Wayland app_id specification
+
+GLFW now supports specifying the app_id for a Wayland window using the
+[GLFW_WAYLAND_APP_ID](@ref GLFW_WAYLAND_APP_ID_hint) window hint string.
+
+
 @subsubsection features_34_angle_backend Support for ANGLE rendering backend selection
 
 GLFW now provides the
@@ -138,9 +144,26 @@ GLFW_TRANSPARENT_FRAMEBUFFER on Windows 7 if DWM transparency is off
 (the Transparency setting under Personalization > Window Color).
 
 
+@subsubsection emptyevents_34 Empty events on X11 no longer roundtrip to server
+
+Events posted with @ref glfwPostEmptyEvent now use a separate unnamed pipe
+instead of sending an X11 client event to the helper window.
+
+
 @subsection deprecations_34 Deprecations in version 3.4
 
 @subsection removals_34 Removals in 3.4
+
+@subsubsection vulkan_static_34 GLFW_VULKAN_STATIC CMake option has been removed
+
+This option was used to compile GLFW directly linked with the Vulkan loader, instead of
+using dynamic loading to get hold of `vkGetInstanceProcAddr` at initialization.  This is
+now done by calling the @ref glfwInitVulkanLoader function before initialization.
+
+If you need backward compatibility, this macro can still be defined for GLFW 3.4 and will
+have no effect.  The call to @ref glfwInitVulkanLoader can be conditionally enabled in
+your code by checking the @ref GLFW_VERSION_MAJOR and @ref GLFW_VERSION_MINOR macros.
+
 
 @subsubsection osmesa_option_34 GLFW_USE_OSMESA CMake option has been removed
 
@@ -168,6 +191,7 @@ then GLFW will fail to initialize.
  - @ref glfwInitAllocator
  - @ref glfwGetPlatform
  - @ref glfwPlatformSupported
+ - @ref glfwInitVulkanLoader
 
 
 @subsubsection types_34 New types in version 3.4
