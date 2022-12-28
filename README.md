@@ -139,6 +139,11 @@ information on what to include when reporting a bug.
  - Added `GLFW_POINTING_HAND_CURSOR` alias for `GLFW_HAND_CURSOR` (#427)
  - Added `GLFW_MOUSE_PASSTHROUGH` window hint for letting mouse input pass
    through the window (#1236,#1568)
+ - Added `GLFW_CURSOR_CAPTURED` cursor mode to confine the cursor to the window
+   content area (#58)
+ - Added `GLFW_POSITION_X` and `GLFW_POSITION_Y` window hints for initial position
+   (#1603,#1747)
+ - Added `GLFW_ANY_POSITION` hint value for letting the window manager choose (#1603,#1747)
  - Added `GLFW_PLATFORM_UNAVAILABLE` error for platform detection failures (#1958)
  - Added `GLFW_FEATURE_UNAVAILABLE` error for platform limitations (#1692)
  - Added `GLFW_FEATURE_UNIMPLEMENTED` error for incomplete backends (#1692)
@@ -310,6 +315,8 @@ information on what to include when reporting a bug.
  - [Wayland] Added support for key names via xkbcommon
  - [Wayland] Added support for file path drop events (#2040)
  - [Wayland] Added support for more human-readable monitor names where available
+ - [Wayland] Disabled alpha channel for opaque windows on systems lacking
+   `EGL_EXT_present_opaque` (#1895)
  - [Wayland] Removed support for `wl_shell` (#1443)
  - [Wayland] Bugfix: The `GLFW_HAND_CURSOR` shape used the wrong image (#1432)
  - [Wayland] Bugfix: `CLOCK_MONOTONIC` was not correctly enabled
@@ -389,7 +396,9 @@ information on what to include when reporting a bug.
    (#442)
  - [EGL] Added ANGLE backend selection via `EGL_ANGLE_platform_angle` extension
    (#1380)
+   [EGL] Added loading of glvnd `libOpenGL.so.0` where available for OpenGL
  - [EGL] Bugfix: The `GLFW_DOUBLEBUFFER` context attribute was ignored (#1843)
+ - [GLX] Added loading of glvnd `libGLX.so.0` where available
  - [GLX] Bugfix: Context creation failed if GLX 1.4 was not exported by GLX library
 
 
