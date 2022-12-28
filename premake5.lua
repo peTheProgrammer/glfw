@@ -1,5 +1,10 @@
+function include_glfw(path)
+	includedirs (path .. "/include")
+	links "glfw"
+end
+
 project "glfw"
-	location "./"
+	location (path.join(_WORKING_DIR, "_out/build/%{prj.name}"))
 	kind "StaticLib"
 	language "C"
 
